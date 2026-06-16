@@ -59,6 +59,12 @@ export default function AdminPanel({ token, logout }) {
                 { ids: selectedIds },
                 config
             );
+
+            setStatusMessage(res.data.message);
+            setSelectedIds([]);
+
+            await loadUsers();
+
         } catch (err) {
             handleApiError(err);
         }
