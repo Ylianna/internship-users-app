@@ -7,12 +7,16 @@ export default function AdminPanel({ token, logout }) {
     const [statusMessage, setStatusMessage] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
     const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
+    const API_URL = 'https://internship-backend-3no2.onrender.com';
 
     const config = { headers: { Authorization: `Bearer ${token}` } };
 
     const loadUsers = async () => {
         try {
-            const res = await axios.get('https://internship-backend-3no2.onrender.com/api/users', config);
+            const res = await axios.get(
+                `${API_URL}/api/users`,
+                config
+            );
             setUsers(res.data);
         } catch (err) {
             handleApiError(err);
@@ -48,13 +52,13 @@ export default function AdminPanel({ token, logout }) {
         }
     };
 
-    const handleToolbarAction = async (endpoint) => {
-        if (selectedIds.length === 0) return;
+    const handleToolbarAction = async (action) => {
         try {
-            const res = await axios.post(`https://internship-backend-3no2.onrender.com${endpoint}`, { ids: selectedIds }, config);
-            setStatusMessage(res.data.message);
-            setSelectedIds([]);
-            await loadUsers();
+            const res = await axios.post(
+                `${API_URL}/api/users/${action}`,
+                { ids: selectedIds },
+                config
+            );
         } catch (err) {
             handleApiError(err);
         }
