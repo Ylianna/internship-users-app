@@ -14,7 +14,7 @@ export default function Register() {
         setError('');
         setMessage('');
         try {
-            const res = await axios.post('https://onrender.com', { name, email, password });
+            const res = await axios.post('https://internship-backend-3no2.onrender.com/api/auth/register', { name, email, password });
             setMessage(res.data.message);
         } catch (err) {
             setError(err.response?.data?.error || 'Registration error');

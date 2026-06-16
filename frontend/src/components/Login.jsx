@@ -11,7 +11,7 @@ export default function Login({ setToken }) {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('https://onrender.com', { email, password });
+            const res = await axios.post('https://internship-backend-3no2.onrender.com/api/auth/login', { email, password });
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('user', JSON.stringify(res.data.user));
             setToken(res.data.token);

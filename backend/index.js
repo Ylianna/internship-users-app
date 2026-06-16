@@ -176,7 +176,7 @@ app.post('/api/users/delete-unverified', checkUserStatus, async (req, res) => {
     }
 });
 
-const PORT = 5050;
+const PORT = process.env.PORT || 5050;
 
 async function startServer() {
     try {

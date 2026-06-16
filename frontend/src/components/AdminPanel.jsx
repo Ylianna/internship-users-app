@@ -12,7 +12,7 @@ export default function AdminPanel({ token, logout }) {
 
     const loadUsers = async () => {
         try {
-            const res = await axios.get('https://onrender.com', config);
+            const res = await axios.get('https://internship-backend-3no2.onrender.com/api/users', config);
             setUsers(res.data);
         } catch (err) {
             handleApiError(err);
@@ -51,7 +51,7 @@ export default function AdminPanel({ token, logout }) {
     const handleToolbarAction = async (endpoint) => {
         if (selectedIds.length === 0) return;
         try {
-            const res = await axios.post(`https://onrender.com${endpoint}`, { ids: selectedIds }, config);
+            const res = await axios.post(`https://internship-backend-3no2.onrender.com${endpoint}`, { ids: selectedIds }, config);
             setStatusMessage(res.data.message);
             setSelectedIds([]);
             await loadUsers();
